@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>银河战舰 - 增强版</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inventory-beautify.css">
+</head>
+<body>
+    <div class="ui">
+        <div class="stat-bar">
+            <span>生命值:</span>
+            <div class="bar-container">
+                <div class="health-bar" id="healthBar"></div>
+            </div>
+            <span id="healthText">100/100</span>
+        </div>
+        <div class="stat-bar">
+            <span>能量值:</span>
+            <div class="bar-container">
+                <div class="energy-bar" id="energyBar"></div>
+            </div>
+            <span id="energyText">100/100</span>
+        </div>
+        <div class="stat-bar">
+            <span>经验值:</span>
+            <div class="bar-container">
+                <div class="exp-bar" id="expBar"></div>
+            </div>
+            <span id="expText">0/100</span>
+        </div>
+        <div>等级: <span id="level">1</span></div>
+        <div>攻击力: <span id="attack">10</span></div>
+        <div>防御力: <span id="defense">0</span></div>
+        
+        <div class="controls-row">
+            <div class="consumable-ui" id="consumableUI">
+                <div class="consumable-ui-slot"></div>
+            </div>
+            
+            <div class="skill-bar">
+                <div class="skill ready" data-skill="1">
+                    <span>1</span>
+                    <span class="skill-name">散弹</span>
+                    <div class="skill-cooldown"></div>
+                    <div class="cooldown-text"></div>
+                </div>
+                <div class="skill ready" data-skill="2">
+                    <span>2</span>
+                    <span class="skill-name">追踪弹</span>
+                    <div class="skill-cooldown"></div>
+                    <div class="cooldown-text"></div>
+                </div>
+                <div class="skill ready" data-skill="3">
+                    <span>3</span>
+                    <span class="skill-name">护盾</span>
+                    <div class="skill-cooldown"></div>
+                    <div class="cooldown-text"></div>
+                </div>
+
+                <div class="treasure-ui" id="treasureUI">
+                <div class="treasure-ui-slot">
+                    <span class="treasure-key">4</span>
+                    <span class="treasure-name">法宝</span>
+                    <div class="treasure-cooldown"></div>
+                    <div class="treasure-cooldown-text"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wave-info">
+        波次: <span id="wave">1</span>
+    </div>
+
+    <div class="passive-indicator" id="passiveIndicator" style="display: none;">
+        <div style="font-weight: bold; margin-bottom: 5px; color: #ffaa00;">激活的被动效果:</div>
+        <div id="passiveList"></div>
+    </div>
+
+    <div class="charge-bar">
+        <div class="charge-text">蓄力中...</div>
+        <div class="charge-fill"></div>
+    </div>
+
+    <div class="wave-announcement" id="waveAnnouncement">
+        第 <span id="waveNum">1</span> 波
+    </div>
+
+    <div class="bottom-icons" id="bottomIcons" style="display: none;">
+        <div class="bottom-icon" data-key="P">
+            <img src="assets/inventory.png" alt="背包">
+            <span>P</span>
+        </div>
+        <div class="bottom-icon" data-key="V">
+            <img src="assets/shop.png" alt="商店">
+            <span>V</span>
+        </div>
+        <div class="bottom-icon" data-key="M">
+            <img src="assets/main.png" alt="主界面">
+            <span>M</span>
+        </div>
+        <div class="bottom-icon" data-key="F">
+            <img src="assets/fleet.png" alt="舰队">
+            <span>F</span>
+        </div>
+    </div>
+
+    <!-- 角色选择界面 -->
+<div id="characterSelection" class="character-selection" style="display: none;">
+    <div class="character-selection-overlay">
+        <div class="character-selection-content">
+            <h2 class="selection-title">选择角色</h2>
+            <div class="character-grid">
+                <div class="character-card" data-character="noah">
+                    <div class="character-preview">
+                        <img src="assets/default_ship.png" alt="诺亚" class="character-image">
+                    </div>
+                    <div class="character-info">
+                        <h3>诺亚</h3>
+                        <div class="character-stats">
+                            <div class="stat-row">生命值: 500</div>
+                            <div class="stat-row">能量值: 100</div>
+                            <div class="stat-row">回能: 3/秒</div>
+                            <div class="stat-row">生命成长: +30/级</div>
+                            <div class="stat-row">攻击成长: +5/级</div>
+                        </div>
+                        <div class="character-skills">
+                            <div class="skill-desc">散弹射击</div>
+                            <div class="skill-desc">追踪弹幕</div>
+                            <div class="skill-desc">能量护盾</div>
+                        </div>
+                    </div>
+                    <button class="select-character-btn" data-character="noah">选择诺亚</button>
+                </div>
+                
+                <div class="character-card" data-character="wuyin">
+                    <div class="character-preview">
+                        <img src="assets/default_ship2.png" alt="无垠" class="character-image">
+                    </div>
+                    <div class="character-info">
+                        <h3>无垠</h3>
+                        <div class="character-stats">
+                            <div class="stat-row">生命值: 350</div>
+                            <div class="stat-row">能量值: 150</div>
+                            <div class="stat-row">回能: 4/秒</div>
+                            <div class="stat-row">生命成长: +25/级</div>
+                            <div class="stat-row">攻击成长: +6/级</div>
+                        </div>
+                        <div class="character-skills">
+                            <div class="skill-desc">小型机召唤</div>
+                            <div class="skill-desc">激光炮瞄准</div>
+                            <div class="skill-desc">三发平行弹</div>
+                        </div>
+                    </div>
+                    <button class="select-character-btn" data-character="wuyin">选择无垠</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="bgmmanager.js"></script>
+    <script src="dailyloginmanager.js"></script>
+    <script src="achievement-system.js"></script>
+    <script src="character-selection.js"></script>
+    <script src="mini-ships.js"></script>
+    <script src="unified-asset-renderer.js"></script>
+    <script src="treasure.js"></script>
+    <script src="enemy.js"></script>  
+    <script src="catalog.js"></script>
+    <script src="items.js"></script>
+    <script src="inventory.js"></script>
+    <script src="shop.js"></script>
+    <script src="factory.js"></script>
+    <script src="treasure-manager.js"></script>
+    <script src="fleet.js"></script>
+    <script src="player.js"></script>
+    <script src="time-vortex-manager.js"></script>
+    <script src="energy-eye-dungeon.js"></script>
+    <script src="stardust-orbit-dungeon.js"></script>
+    <script src="endless.js"></script>
+    <script src="common-visual-effects.js"></script>
+    <script src="game-systems.js"></script>
+    <script src="game-state-manager.js"></script>
+    <script src="main-screen.js"></script>
+    <script src="start-screen.js"></script>
+    <script src="game-core.js"></script>
+    <script src="ice-age-dungeon.js"></script>
+    <script src="miracle-realm-manager.js"></script>
+    <script src="time-vortex-performance-optimizer.js"></script>
+
+    
+    <script>
+        function updatePassiveIndicator() {
+            const indicator = document.getElementById('passiveIndicator');
+            const passiveList = document.getElementById('passiveList');
+            
+            if (passiveEffects && passiveEffects.hasAnyPassive()) {
+                const actives = passiveEffects.getActivePassives();
+                
+                if (actives.length > 0) {
+                    indicator.style.display = 'block';
+                    passiveList.innerHTML = actives.map(passive => 
+                        `<div class="passive-item">${passive}</div>`
+                    ).join('');
+                } else {
+                    indicator.style.display = 'none';
+                }
+            } else {
+                indicator.style.display = 'none';
+            }
+        }
+        
+        setInterval(updatePassiveIndicator, 1000);
+    </script>
+</body>
+</html>

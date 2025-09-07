@@ -1,0 +1,589 @@
+/* 新增到 style.css 文件末尾 */
+
+/* 背包界面整体布局优化 */
+.inventory-panel-new {
+  background: linear-gradient(135deg, #0a0f1b 0%, #1a2332 100%);
+  border: 2px solid #00d4ff;
+  border-radius: 20px;
+  padding: 0;
+  width: 90vw;
+  max-width: 1100px;
+  height: 80vh;
+  max-height: 700px;
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.5), inset 0 0 20px rgba(0, 212, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 头部保持原样 */
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+  background: rgba(0, 20, 40, 0.5);
+}
+
+.inventory-header h2 {
+  color: #00d4ff;
+  margin: 0;
+  font-size: 20px;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* 主布局 - 左右分布 */
+.inventory-main-layout {
+  display: flex;
+  flex: 1;
+  gap: 15px;
+  padding: 15px;
+  overflow: hidden;
+}
+
+/* 左侧面板 - 固定宽度，不滚动 */
+.inventory-left-panel {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+/* 右侧物品格面板 */
+.inventory-right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 20, 40, 0.4);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+/* 六个装备栏 - 2x3网格 */
+.equipment-section-new {
+  background: rgba(0, 40, 80, 0.3);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.equipment-grid-new {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.equipment-slot-new {
+  width: 90px;
+  height: 90px;
+  border: 2px solid #2a4a6a;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(10, 30, 50, 0.8), rgba(20, 50, 80, 0.6));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.equipment-slot-new:hover {
+  border-color: #00d4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+.equipment-slot-new.has-item {
+  border-color: #00ff88;
+  background: linear-gradient(145deg, rgba(0, 50, 40, 0.8), rgba(10, 70, 50, 0.6));
+}
+
+.slot-label {
+  position: absolute;
+  bottom: 3px;
+  font-size: 10px;
+  color: rgba(200, 220, 255, 0.7);
+  text-shadow: 0 0 3px rgba(0, 212, 255, 0.5);
+}
+
+/* 晶核等级显示 - 紧凑版 */
+.crystal-section-compact {
+  background: rgba(0, 60, 90, 0.3);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.crystal-levels-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.crystal-item-compact {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  background: linear-gradient(90deg, rgba(0, 40, 80, 0.4), rgba(0, 20, 40, 0.2));
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.crystal-item-compact:hover {
+  background: linear-gradient(90deg, rgba(0, 60, 120, 0.5), rgba(0, 30, 60, 0.3));
+}
+
+.crystal-item-compact .crystal-icon {
+  font-size: 18px;
+  margin-right: 8px;
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+.crystal-item-compact .crystal-name {
+  flex: 1;
+  color: #aaccff;
+  font-size: 13px;
+}
+
+.crystal-item-compact .crystal-level {
+  color: #00ff88;
+  font-weight: bold;
+  font-size: 13px;
+  text-shadow: 0 0 3px rgba(0, 255, 136, 0.5);
+}
+
+/* 玩家属性 - 紧凑版 */
+.player-stats-compact {
+  background: rgba(0, 30, 60, 0.3);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  padding: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.stats-grid-compact {
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 50px 85px 50px auto;
+  align-items: center;
+  padding: 4px 6px;
+  margin-bottom: 3px;
+  background: linear-gradient(90deg, rgba(0, 50, 100, 0.2), transparent);
+  border-radius: 4px;
+  gap: 5px;
+}
+
+.stat-row:hover {
+  background: linear-gradient(90deg, rgba(0, 70, 140, 0.3), transparent);
+}
+
+.stat-label {
+  color: #8ab4f8;
+  font-weight: normal;
+  font-family: inherit;
+  text-shadow: none;
+  text-align: left;
+}
+
+.stat-value {
+  color: #8ab4f8 !important;
+  font-weight: normal !important;
+  font-family: inherit !important;
+  text-shadow: none !important;
+  text-align: left;
+}
+
+/* 右侧顶部信息栏 */
+.inventory-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.inventory-header-info h3 {
+  color: #00d4ff;
+  margin: 0;
+  font-size: 16px;
+  text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+}
+
+.inventory-right-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.gold-display-inline {
+  color: #ffdd00;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 200, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.gold-icon {
+  font-size: 16px;
+  animation: goldShine 2s ease-in-out infinite;
+}
+
+@keyframes goldShine {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 3px gold); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 6px gold); }
+}
+
+.inventory-count {
+  color: #aaccff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 物品格 */
+.inventory-grid-new {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 6px;
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px;
+  background: rgba(0, 10, 20, 0.3);
+  border-radius: 8px;
+}
+
+.inventory-slot-new {
+  aspect-ratio: 1;
+  border: 2px solid #2a3a4a;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(10, 20, 30, 0.8), rgba(20, 30, 40, 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.inventory-slot-new:hover {
+  border-color: #00d4ff;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.inventory-slot-new.has-item {
+  border-color: #4a7a9a;
+  background: linear-gradient(135deg, rgba(20, 40, 50, 0.9), rgba(30, 50, 60, 0.7));
+}
+
+/* 标题样式 */
+.section-title {
+  color: #00d4ff;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+  text-transform: uppercase;
+}
+
+/* 滚动条美化 - 只针对物品格区域 */
+.inventory-grid-new::-webkit-scrollbar {
+  width: 6px;
+}
+
+.inventory-grid-new::-webkit-scrollbar-track {
+  background: rgba(0, 20, 40, 0.3);
+  border-radius: 3px;
+}
+
+.inventory-grid-new::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00d4ff, #0088aa);
+  border-radius: 3px;
+}
+
+.inventory-grid-new::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffff, #00aacc);
+}
+
+/* 关闭按钮保持原样 */
+.inventory-panel-new .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(255, 0, 0, 0.7);
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.inventory-panel-new .close-btn:hover {
+  background: rgba(255, 0, 0, 1);
+  transform: scale(1.1);
+}
+
+.crystal-section-inline {
+  background: rgba(0, 60, 90, 0.3);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  padding: 8px 12px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.crystal-section-inline h3 {
+  color: #00d4ff;
+  font-size: 14px;
+  margin: 0;
+  text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+  flex-shrink: 0;
+}
+
+/* 晶核图标行 */
+.crystal-icons-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+/* 单个晶核图标组 */
+.crystal-icon-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.crystal-icon-group:hover {
+  transform: translateY(-2px);
+}
+
+.crystal-icon-group .icon {
+  font-size: 20px;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.crystal-icon-group .label {
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 3px currentColor;
+}
+
+/* 爆发晶核样式 */
+.crystal-icon-group.explosion .icon { color: #ff4444; }
+.crystal-icon-group.explosion .label { color: #ff6666; }
+
+/* 生存晶核样式 */
+.crystal-icon-group.survival .icon { color: #44ff44; }
+.crystal-icon-group.survival .label { color: #66ff66; }
+
+/* 战术晶核样式 */
+.crystal-icon-group.tactical .icon { color: #4488ff; }
+.crystal-icon-group.tactical .label { color: #66aaff; }
+
+/* 悬浮提示框 */
+.crystal-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(0, 20, 40, 0.95), rgba(10, 30, 50, 0.95));
+  border: 2px solid #00d4ff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  white-space: nowrap;
+  font-size: 13px;
+  color: #aaccff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.crystal-icon-group:hover .crystal-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.crystal-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #00d4ff;
+}
+
+.crystal-tooltip .level-info {
+  color: #00ff88;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.crystal-tooltip .bonus-info {
+  color: #ffdd00;
+  font-size: 12px;
+}
+.inventory-panel-new .equipment-slot,
+.inventory-panel-new .equipment-slot-new,
+.inventory-panel-new .consumable-slot,
+.inventory-panel-new .treasure-slot,
+.inventory-panel-new .costume-slot {
+  width: 90px !important;
+  height: 90px !important;
+  border: 2px solid #2a4a6a !important;
+  border-radius: 10px !important;
+  background: linear-gradient(145deg, rgba(10, 30, 50, 0.8), rgba(20, 50, 80, 0.6)) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+
+.stat-row {
+  display: grid;
+  align-items: center;
+  padding: 4px 6px;
+  margin-bottom: 3px;
+  background: linear-gradient(90deg, rgba(0, 50, 100, 0.2), transparent);
+  border-radius: 4px;
+}
+
+.stat-row:hover {
+  background: linear-gradient(90deg, rgba(0, 70, 140, 0.3), transparent);
+}
+
+/* 固定第一列和第三列属性名称的位置 */
+.stat-label {
+  color: #8ab4f8;
+  margin-right: 5px;
+  min-width: 50px; /* 从45px改为50px */
+  font-weight: normal;
+  font-family: inherit;
+  text-shadow: none;
+  display: inline-block;
+  text-align: left; /* 添加左对齐 */
+}
+
+/* 第一列属性值 */
+.stat-value:nth-of-type(2) {
+  color: #8ab4f8;
+  font-weight: normal;
+  font-family: inherit;
+  text-shadow: none;
+  margin-right: 15px;
+  min-width: 85px; /* 从80px改为85px */
+  display: inline-block;
+  text-align: left;
+}
+
+/* 第二列属性值 */
+.stat-value:nth-of-type(4) {
+  color: #8ab4f8; /* 改为与属性名完全相同的颜色 */
+  font-weight: normal; /* 与属性名相同的字体粗细 */
+  font-family: inherit; /* 与属性名相同的字体 */
+  text-shadow: none; /* 移除发光效果 */
+  margin-right: 15px;
+}
+
+/* 如果上面的nth-of-type选择器不生效，使用这个更通用的方案 */
+.stat-value {
+  color: #8ab4f8 !important; /* 强制改为与属性名完全相同的颜色 */
+  font-weight: normal !important; /* 强制与属性名相同的字体粗细 */
+  font-family: inherit !important; /* 强制与属性名相同的字体 */
+  text-shadow: none !important; /* 强制移除发光效果 */
+  margin-right: 15px;
+}
+
+.player-stats-compact .stats-grid-compact .stat-row{display:grid!important;grid-template-columns:60px 130px 60px 1fr;gap:6px;align-items:center}
+.player-stats-compact .stats-grid-compact .stat-label,.player-stats-compact .stats-grid-compact .stat-value{display:flex;align-items:center}
+.player-stats-compact .stats-grid-compact .stat-label{width:60px;text-align:left}
+.player-stats-compact .stats-grid-compact .stat-value:nth-of-type(2){width:130px;text-align:left}
+
+.player-stats-compact .stats-grid-compact .stat-row {
+  display: grid;
+  grid-template-columns: 50px 80px 50px 80px; /* 标签列宽 / 数值列宽 */
+  align-items: center;
+}
+.player-stats-compact .stats-grid-compact .stat-label {
+  text-align: left;
+}
+.player-stats-compact .stats-grid-compact .stat-value {
+  text-align: right;
+  font-size: 13px;
+  /* 字体大小 */
+}
+
+/* 等级和战斗力行样式 */
+.level-combat-row {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(138, 180, 248, 0.3);
+  background: linear-gradient(135deg, rgba(138, 180, 248, 0.05), rgba(100, 150, 255, 0.05));
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.level-label, .level-value {
+  color: #FFD700 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.5) !important;
+}
+
+.combat-label, .combat-value {
+  color: #FFD700 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 3px rgba(255, 215, 0, 0.5) !important;
+}
+
+.level-value, .combat-value {
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
+
+/* 闪烁效果 */
+.level-value, .combat-value {
+  animation: statGlow 3s ease-in-out infinite;
+}
+
+@keyframes statGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+
+
+
